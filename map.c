@@ -9,15 +9,15 @@ void put(map **linked_list, char *key, char *value) {
         it = it->next;
         if (strcmp(it->key, key) == 0) {
             free(it->value);
-            it->value = malloc(sizeof(value));
+            it->value = malloc(sizeof(char) * strlen(value));
             strcpy(it->value, value);
             return;
         }
     }
     it->next = malloc(sizeof(map));
     it = it->next;
-    it->key = malloc(sizeof(key));
-    it->value = malloc(sizeof(value));
+    it->key = malloc(sizeof(char) * strlen(key));
+    it->value = malloc(sizeof(char) * strlen(value));
     strcpy(it->key, key);
     strcpy(it->value, value);
 }
@@ -26,7 +26,7 @@ char *get(map **linked_list, char *key) {
     map *it = (*linked_list)->next;
     while (it != NULL) {
         if (strcmp(it->key, key) == 0) {
-            char *ret = malloc(sizeof(it->value));
+            char *ret = malloc(sizeof(char) * strlen(it->value));
             strcpy(ret, it->value);
             return ret;
         }

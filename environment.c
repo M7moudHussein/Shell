@@ -1,18 +1,19 @@
 #include <stdlib.h>
 #include <unistd.h>
+#include <memory.h>
+#include <signal.h>
 #include "environment.h"
 #include "utils.h"
 
 void setup_environment(void) {
+    signal(SIGCHLD, proccess_ended_log);
     char *unsplitted_paths = getenv("PATH");
     char **result;
     number_of_paths = split(unsplitted_paths, ':', &result);
     paths = result;
-
     build_map(&variables);
     put(&variables, "HOME", getenv("HOME"));
-
-    build_map(&variables);
+    put(&variables, "PATH", getenv("PATH"));
 }
 
 char *get_command_path(const command_line command) {
@@ -38,3 +39,10 @@ char *get_variable(char *variable_name) {
     return get(&variables, variable_name);
 }
 
+char *get_history_path() {
+    return join_by(getenv("HOME"), "Shell/history", '/');
+}
+
+char *get_log_path() {
+    return join_by(getenv("HOME"), "Shell/log", '/');
+}

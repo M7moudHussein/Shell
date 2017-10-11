@@ -25,4 +25,8 @@ void put_variable(char *, char *);
 
 char *get_variable(char *);
 
+char *get_history_path();
+
+char *get_log_path();
+
 #endif // ENVIRONMENT_H_

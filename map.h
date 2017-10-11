@@ -7,7 +7,7 @@
 typedef struct map {
     char *key;
     char *value;
-    struct list_node *next;
+    struct map *next;
 } map;
 
 void put(map **, char *, char *);

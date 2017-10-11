@@ -1,6 +1,8 @@
 #include <unistd.h>
-#include "custom_types.h"
+#include <stdlib.h>
+#include <memory.h>
 #include "environment.h"
+#include "file_processing.h"
 
 extern const char home_dir_char;
 
@@ -27,4 +29,15 @@ bool cd(command_line *command) {
 bool echo(const char *message) {
     puts(message);
     return true;
+}
+
+bool show_history() {
+    char **hisrory;
+    int history_size = read_history_file(&hisrory);
+    for (int i = 0; i < history_size; i++) puts(hisrory[i]);
+    return true;
+}
+
+void exit_shell() {
+    exit(0);
 }

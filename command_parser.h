@@ -19,6 +19,7 @@
 const char background_run_character = '&';
 const char comment_character = '#';
 const char variable_call_character = '$';
+const int MAX_LINE_LENGTH = 512;
 
 command_line *parse_command(const char *line);
 

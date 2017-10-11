@@ -2,29 +2,31 @@
 #define FILE_PROCESSING_H_
 
 #include <stdio.h>
+#include "custom_types.h"
 
-/*
-	history file basic functions' prototypes
-*/
-void open_history_file();
+FILE *history_file_ptr;
 
-FILE *get_history_file();
+FILE *log_file;
 
-void close_history_file();
+int read_history_file(char ***);
+
+bool history_file_exists();
+
+void write_history_file(char *);
 
 /* 
 	log file basic functions' prototypes
 */
 void open_log_file();
 
-FILE *get_log_file();
+void logger(char *);
 
 void close_log_file();
 
 
 FILE *commands_batch_file_ptr;
 
-void open_commands_batch_file(const char *dir);
+bool open_commands_batch_file(const char *dir);
 
 FILE *get_commands_batch_file();
 
